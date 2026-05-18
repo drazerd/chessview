@@ -489,11 +489,17 @@ cg-board piece.fading {
   gap: 4px;
 }
 
-.cv-promotion-piece {
-  width: 20%;
-  height: 20%;
-  max-width: 80px;
-  max-height: 80px;
+.cv-promotion-overlay .cv-promotion-dialog {
+  position: static
+}
+
+piece.cv-promotion-piece {
+  position: static;
+  display: block;
+  width: 60px;
+  height: 60px;
+  max-width: none;
+  max-height: none;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -504,9 +510,11 @@ cg-board piece.fading {
   transition:
     transform 0.1s,
     box-shadow 0.1s;
+  pointer-events: auto;
+  z-index: auto;
 }
 
-.cv-promotion-piece:hover {
+piece.cv-promotion-piece:hover {
   transform: scale(1.15);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   border-color: var(--interactive-accent);
@@ -1228,9 +1236,9 @@ cg-board piece.fading {
     padding: 4px 10px;
   }
 
-  .cv-promotion-piece {
-    width: 22%;
-    height: 22%;
+  piece.cv-promotion-piece {
+    width: 48px;
+    height: 48px;
   }
 }
 

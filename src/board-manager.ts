@@ -478,7 +478,7 @@ export class BoardManager {
         cls: 'cv-promotion-overlay'
       });
 
-      const dialog = overlay.createDiv({ cls: 'cv-promotion-dialog' });
+      const dialog = overlay.createDiv({ cls: 'cv-promotion-dialog cg-wrap' });
 
       const pos = squareToPosition(square, this.isFlipped);
       if (pos) {
@@ -496,8 +496,8 @@ export class BoardManager {
       };
 
       for (const piece of ['q', 'r', 'b', 'n']) {
-        const btn = dialog.createDiv({
-          cls: `cv-promotion-piece piece ${color} ${pieceNames[piece]}`,
+        const btn = dialog.createEl('piece' as keyof HTMLElementTagNameMap, {
+          cls: `cv-promotion-piece ${color} ${pieceNames[piece]}`,
           attr: { 'aria-label': pieceNames[piece], title: pieceNames[piece] }
         });
         btn.onclick = (e: MouseEvent) => {
