@@ -55,7 +55,7 @@ export class NavigationController {
     this.board = board;
     this.startFen = startFen;
 
-    if (data.moves && data.moves.length > 0 && !data.isPuzzle) {
+    if (!data.isPuzzle) {
       this.moveTree = data.moves;
       this.currentLine = this.moveTree;
     }
@@ -710,11 +710,17 @@ export class NavigationController {
   // =====================================================================
 
   getClipboardText(): string {
-    if (this.data.type === 'fen' || this.moveTree.length === 0) {
+    if (this.moveTree.length === 0) {
       return this.chess.fen();
     }
 
-    const headers = Object.entries(this.data.headers)
+    const headerEntries = { ...this.data.headers };
+    if (this.data.fen && !headerEntries['FEN']) {
+      headerEntries['SetUp'] = '1';
+      headerEntries['FEN'] = this.data.fen;
+    }
+    
+    const headers = Object.entries(headerEntries)
       .map(([k, v]) => `[${k} "${v}"]`)
       .join('\n');
 

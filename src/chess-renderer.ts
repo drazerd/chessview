@@ -144,7 +144,7 @@ export class ChessRenderer {
 
     // No more branch overlay
 
-    if (useRightLayout && this.settings.showMoveList && this.nav.moveCount > 0) {
+    if (useRightLayout && this.settings.showMoveList) {
       const movesSection = content.createDiv({ cls: 'cv-moves-section' });
       this.nav.createMoveList(movesSection);
     }
@@ -154,7 +154,7 @@ export class ChessRenderer {
     } else {
       this.renderFooter(boardColumn);
 
-      if (this.settings.showMoveList && this.nav.moveCount > 0) {
+      if (this.settings.showMoveList) {
         const bottomMoves = boardColumn.createDiv({ cls: 'cv-bottom-moves' });
         this.nav.createMoveList(bottomMoves);
       }
@@ -210,12 +210,6 @@ export class ChessRenderer {
 
   private shouldUseRightLayout(): boolean {
     if (!this.settings.showMoveList) return false;
-
-    const hasMoves = this.data.isPuzzle
-      ? this.data.solutionMoves.length > 0
-      : (this.data.moves.length > 0);
-
-    if (!hasMoves) return false;
 
     if (this.settings.moveListPosition === 'bottom') return false;
 
@@ -354,7 +348,7 @@ export class ChessRenderer {
 
     const leftGroup = footer.createDiv({ cls: 'cv-footer-left' });
 
-    if (this.nav && this.nav.moveCount > 0) {
+    if (this.nav) {
       const firstBtn = this.createControlBtn(
         leftGroup,
         UI_LABELS.firstMove,
