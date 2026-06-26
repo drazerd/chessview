@@ -98,7 +98,7 @@ export class BoardManager {
       this.data.isEditable && !this.data.isStatic && !this.data.isPuzzle;
 
     const config: Config = {
-      fen: chess.fen(),
+      fen: this.data.fen ?? chess.fen(),
       orientation: this.isFlipped ? 'black' : 'white',
       viewOnly: this.data.isStatic,
       coordinates: this.settings.showCoordinates,
